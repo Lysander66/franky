@@ -24,9 +24,9 @@ export const data = [
 				link: '/v1/calendar'
 			},
 			{
-				title: '直播流',
+				title: 'Live Stream',
 				icon: PicturesIcon,
-				link: '/v1'
+				link: '/v1/stream'
 			}
 		]
 	},
