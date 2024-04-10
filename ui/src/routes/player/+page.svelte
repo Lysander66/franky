@@ -1,21 +1,27 @@
 <script>
+	import '../../app.pcss'
 	import { onMount } from 'svelte'
 	import { page } from '$app/stores'
 	import * as utils from '$lib/utils.js'
 	import HLSPlayer from '$lib/components/HLSPlayer.svelte'
 	import FLVPlayer from '$lib/components/FLVPlayer.svelte'
 
-	let streamURL = $page.url.searchParams.get('u')
+	let streamURL =
+		$page.url.searchParams.get('u') ||
+		'https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8'
+
 	let streamType = ''
 
 	onMount(() => {
 		if (streamURL) {
 			streamType = utils.detectUrlType(streamURL)
-			console.log(streamURL)
-			console.log(streamType)
 		}
 	})
 </script>
+
+<svelte:head>
+	<title>播放器</title>
+</svelte:head>
 
 <div class="container">
 	<div class="video">
@@ -32,7 +38,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		background-image: url('deepsea.webp');
+		background-image: url('/images/deepsea.webp');
 		background-size: cover;
 		background-position: center;
 		min-height: 100vh;

@@ -5,6 +5,18 @@ settings:
   excludeLinksFromLockfile: false
 
 devDependencies:
+  '@event-calendar/core':
+    specifier: ^2.6.1
+    version: 2.6.1
+  '@event-calendar/day-grid':
+    specifier: ^2.6.1
+    version: 2.6.1
+  '@event-calendar/list':
+    specifier: ^2.6.1
+    version: 2.6.1
+  '@event-calendar/time-grid':
+    specifier: ^2.6.1
+    version: 2.6.1
   '@sveltejs/adapter-auto':
     specifier: ^3.0.0
     version: 3.2.0(@sveltejs/kit@2.5.5)
@@ -275,6 +287,33 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@event-calendar/core@2.6.1:
+    resolution: {integrity: sha512-3dxMnmFfjEzeyNFhm0PS04/Js3LqqQC6HzqY6XtypxC2wLFhxrK4NqX4cq8ZKtIrTJu6EFFB3DZ8GamW28Pl7g==}
+    dependencies:
+      svelte: 4.2.12
+    dev: true
+
+  /@event-calendar/day-grid@2.6.1:
+    resolution: {integrity: sha512-wYzPRauhJRyCYNfh00vLdYdinE9DhWE5DYSh8drk8z1dVdjrunERRvcaMASi+Q6gwn9/i7U4yTORBnFeSktqrQ==}
+    dependencies:
+      '@event-calendar/core': 2.6.1
+      svelte: 4.2.12
+    dev: true
+
+  /@event-calendar/list@2.6.1:
+    resolution: {integrity: sha512-pf9TJD/myj4wjj+nhjGRESthWsyVdCpXFIsRchosu7UTy5ZVxwCNOa/eFy/2AtXPXu5bgb6RXWYTdNl5q/FZmw==}
+    dependencies:
+      '@event-calendar/core': 2.6.1
+      svelte: 4.2.12
+    dev: true
+
+  /@event-calendar/time-grid@2.6.1:
+    resolution: {integrity: sha512-YSy2sJlpu7ZR7l+/c4DO/LpyZ+1+i357mXwth/i3gBew+bNQvWdMpiaYX05gNR5DokbXx3ZNYcbnXFPLVVvBDw==}
+    dependencies:
+      '@event-calendar/core': 2.6.1
+      svelte: 4.2.12
+    dev: true
 
   /@isaacs/cliui@8.0.2:
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
