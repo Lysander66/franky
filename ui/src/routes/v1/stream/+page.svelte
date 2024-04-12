@@ -132,7 +132,7 @@
 
 											<td class="border-b border-gray-200 px-5 py-5 text-sm">
 												<a
-													href="/player?u=http://{v.ip}:8280/{v.app}/{v.stream}/hls.m3u8"
+													href="/player?u=http://{v.ip}:8280/{v.app}/{v.stream}.live.flv"
 													target="_blank">{v.stream}</a
 												></td
 											>
@@ -191,10 +191,10 @@
 </div>
 
 <style>
-	a {
-		/* color: #0000ff; */
-		/* text-decoration: underline; */
-	}
+	/* a {
+		color: #0000ff;
+		text-decoration: underline;
+	} */
 
 	a:hover {
 		color: #0000ff;

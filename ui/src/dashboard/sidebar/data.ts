@@ -27,6 +27,11 @@ export const data = [
 				title: 'Live Stream',
 				icon: PicturesIcon,
 				link: '/v1/stream'
+			},
+			{
+				title: 'HLS Downloader',
+				icon: PicturesIcon,
+				link: '/v1/hls-downloader'
 			}
 		]
 	},
