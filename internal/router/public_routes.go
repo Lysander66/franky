@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	v1 "github.com/Lysander66/franky/internal/api/v1"
+	v1 "github.com/Lysander66/franky/api/v1"
 	"github.com/Lysander66/franky/internal/handler"
 	"github.com/gofiber/fiber/v3"
 )

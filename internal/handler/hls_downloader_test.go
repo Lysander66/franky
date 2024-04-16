@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	v1 "github.com/Lysander66/franky/internal/api/v1"
+	v1 "github.com/Lysander66/franky/api/v1"
 	"github.com/schollz/progressbar/v3"
 )
 
