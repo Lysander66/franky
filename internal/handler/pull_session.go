@@ -7,40 +7,57 @@ import (
 	"os"
 	"path/filepath"
 	"sync"
+	"sync/atomic"
 	"time"
-
-	"github.com/schollz/progressbar/v3"
 
 	"github.com/Lysander66/ace/pkg/common/cnet"
 	"github.com/Lysander66/ace/pkg/hls"
 	"github.com/Lysander66/ace/pkg/playlist"
 )
 
+type Progress struct {
+	N         int32 `json:"n"`
+	Total     int   `json:"total"`
+	Completed int   `json:"completed"`
+}
+
+type Option func(o *PullSession)
+
 type PullSession struct {
 	URI         string
 	dir         string
-	name        string
 	numParallel int
 	httpClient  *cnet.Client
 	playlistURL *url.URL
+	progressCh  chan<- *Progress
 }
 
-func NewPullSession(uri, dir string, hc *cnet.Client) *PullSession {
+func NewPullSession(uri, dir string, opts ...Option) *PullSession {
 	c := &PullSession{
 		URI:         uri,
 		dir:         dir,
 		numParallel: 1,
-		httpClient:  hc,
+	}
+	for _, opt := range opts {
+		opt(c)
 	}
 	return c
 }
 
-func (c *PullSession) SetParallel(n int) {
-	c.numParallel = n
+func WithParallel(n int) Option {
+	return func(o *PullSession) {
+		if n > 0 {
+			o.numParallel = n
+		}
+	}
 }
 
-func (c *PullSession) SetName(name string) {
-	c.name = name
+func WithClient(hc *cnet.Client) Option {
+	return func(o *PullSession) { o.httpClient = hc }
+}
+
+func WithProgress(ch chan<- *Progress) Option {
+	return func(o *PullSession) { o.progressCh = ch }
 }
 
 func (c *PullSession) Start() error {
@@ -95,9 +112,10 @@ func (c *PullSession) run() error {
 		return fmt.Errorf("invalid playlist")
 	}
 
+	var n atomic.Int32
 	var wg sync.WaitGroup
 	limiter := make(chan struct{}, c.numParallel)
-	bar := NewProgressBar(len(initialPlaylist.Segments), c.name+" 下载中")
+	total := len(initialPlaylist.Segments)
 	for i, seg := range initialPlaylist.Segments {
 		wg.Add(1)
 		limiter <- struct{}{}
@@ -107,22 +125,20 @@ func (c *PullSession) run() error {
 			slog.Error("downloadSegment", "err", err, "URI", seg.URI)
 			continue
 		}
-		//name := u.Path
-		//if index := strings.LastIndex(u.Path, "/"); index != -1 {
-		//	name = u.Path[index:]
-		//}
-		//filename := fmt.Sprintf("%s/%s", c.dir, name)
 		filename := fmt.Sprintf("%s/%d.ts", c.dir, i+1)
 
-		go func(i int, rawURL string) {
+		go func(rawURL, filename string) {
 			defer func() {
 				wg.Done()
 				<-limiter
 			}()
 			if err = c.downloadTs(rawURL, filename); err == nil {
-				bar.Add(1)
+				if c.progressCh != nil {
+					n.Add(1)
+					c.progressCh <- &Progress{N: n.Load(), Total: total}
+				}
 			}
-		}(i, u.String())
+		}(u.String(), filename)
 
 		// modify
 		seg.URI = fmt.Sprintf("%d.ts", i+1)
@@ -166,28 +182,4 @@ func (c *PullSession) downloadTs(rawURL string, filename string) error {
 	}
 	slog.Debug("downloadTs", "name", filename, "url", rawURL)
 	return nil
-}
-
-func NewProgressBar(max int, description string) *progressbar.ProgressBar {
-	return progressbar.NewOptions(
-		max,
-		progressbar.OptionSetDescription(description),
-		progressbar.OptionSetWriter(os.Stderr),
-		progressbar.OptionSetWidth(10),
-		progressbar.OptionThrottle(65*time.Millisecond),
-		progressbar.OptionShowCount(),
-		progressbar.OptionOnCompletion(func() {
-			fmt.Fprint(os.Stderr, "\n")
-		}),
-		progressbar.OptionSpinnerType(14),
-		progressbar.OptionFullWidth(),
-		progressbar.OptionSetRenderBlankState(true),
-		progressbar.OptionSetTheme(progressbar.Theme{
-			Saucer:        "=",
-			SaucerHead:    ">",
-			SaucerPadding: " ",
-			BarStart:      "[",
-			BarEnd:        "]",
-		}),
-	)
 }

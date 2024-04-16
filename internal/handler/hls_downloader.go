@@ -12,9 +12,10 @@ import (
 
 	"github.com/Lysander66/ace/pkg/common/cnet"
 	v1 "github.com/Lysander66/franky/internal/api/v1"
+	"github.com/schollz/progressbar/v3"
 )
 
-func DownloadHls(req *v1.DownloadReq) {
+func DownloadHls(req *v1.DownloadReq, progressCh chan<- *Progress) {
 	runtime.GOMAXPROCS(runtime.NumCPU())
 
 	now := time.Now()
@@ -56,11 +57,13 @@ func DownloadHls(req *v1.DownloadReq) {
 
 	client := cnet.New()
 	client.SetHeaders(req.Headers)
-	pullSession := NewPullSession(req.Url, tsDirectory, client)
-	if req.NumParallel > 0 {
-		pullSession.SetParallel(req.NumParallel)
-	}
-	pullSession.SetName(name)
+	pullSession := NewPullSession(
+		req.Url,
+		tsDirectory,
+		WithParallel(req.NumParallel),
+		WithClient(client),
+		WithProgress(progressCh),
+	)
 
 	err = pullSession.Start()
 	if err != nil {
@@ -78,4 +81,28 @@ func DownloadHls(req *v1.DownloadReq) {
 		return
 	}
 	slog.Info("Merge to "+filepath.Join(directory, filename), "elapsed", time.Since(now).String())
+}
+
+func NewProgressBar(max int, description string) *progressbar.ProgressBar {
+	return progressbar.NewOptions(
+		max,
+		progressbar.OptionSetDescription(description),
+		progressbar.OptionSetWriter(os.Stderr),
+		progressbar.OptionSetWidth(10),
+		progressbar.OptionThrottle(65*time.Millisecond),
+		progressbar.OptionShowCount(),
+		progressbar.OptionOnCompletion(func() {
+			fmt.Fprint(os.Stderr, "\n")
+		}),
+		progressbar.OptionSpinnerType(14),
+		progressbar.OptionFullWidth(),
+		progressbar.OptionSetRenderBlankState(true),
+		progressbar.OptionSetTheme(progressbar.Theme{
+			Saucer:        "=",
+			SaucerHead:    ">",
+			SaucerPadding: " ",
+			BarStart:      "[",
+			BarEnd:        "]",
+		}),
+	)
 }

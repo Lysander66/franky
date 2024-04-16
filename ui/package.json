@@ -14,6 +14,8 @@
 		"@event-calendar/day-grid": "^2.6.1",
 		"@event-calendar/list": "^2.6.1",
 		"@event-calendar/time-grid": "^2.6.1",
+		"@microsoft/fetch-event-source": "^2.0.1",
+		"@okrad/svelte-progressbar": "^2.2.0",
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/adapter-static": "^3.0.1",
 		"@sveltejs/kit": "^2.0.0",

@@ -1,6 +1,8 @@
 <script>
 	import { DOWNLOAD_HLS_URL } from '$lib/api'
 	import { toast } from 'svelte-sonner'
+	import { fetchEventSource } from '@microsoft/fetch-event-source'
+	import ProgressBar from '@okrad/svelte-progressbar'
 
 	const placeholder = `{
     "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
@@ -14,7 +16,16 @@
 		use_proxy: 1
 	}
 
+	let downloading = false
+
+	const series = { perc: 0, color: '#4CAF50' }
+
 	async function handleSubmit() {
+		if (downloading) {
+			toast.info('请等待下载完成')
+			return
+		}
+
 		const data = {
 			url: formData.url,
 			name: formData.name,
@@ -28,36 +39,39 @@
 			data.headers = { 'user-agent': navigator.userAgent }
 		}
 
-		const resp = await postData(DOWNLOAD_HLS_URL, data)
-		if (resp.status === 'success') {
-			toast.success('成功')
-		} else {
-			toast.error('失败', {
-				description: resp.status
-			})
-		}
-	}
-
-	async function postData(url = '', data = {}) {
-		const response = await fetch(url, {
+		fetchEventSource(DOWNLOAD_HLS_URL, {
 			method: 'POST',
-			mode: 'cors',
-			cache: 'no-cache',
-			credentials: 'same-origin',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			redirect: 'follow',
-			referrerPolicy: 'no-referrer',
-			body: JSON.stringify(data)
+			body: JSON.stringify(data),
+			onmessage(ev) {
+				const eventData = JSON.parse(ev.data)
+				if (eventData.completed !== 1) {
+					series.perc = ((100 * eventData.n) / eventData.total).toFixed(1)
+				}
+			},
+			onopen() {
+				downloading = true
+			},
+			onclose() {
+				downloading = false
+			},
+			onerror(err) {
+				console.log('error', err)
+				return 3600 * 1000
+			}
 		})
-		return response.json()
 	}
 </script>
 
 <svelte:head>
 	<title>m3u8 下载</title>
 </svelte:head>
+
+<div class="mx-20 my-10">
+	<ProgressBar {series} />
+</div>
 
 <div class="relative mx-auto my-6 w-2/4 max-w-3xl">
 	<div

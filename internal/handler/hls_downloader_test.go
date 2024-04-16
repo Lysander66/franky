@@ -5,8 +5,10 @@ import (
 	"testing"
 
 	v1 "github.com/Lysander66/franky/internal/api/v1"
+	"github.com/schollz/progressbar/v3"
 )
 
+// go test -run TestDownloadHls
 func TestDownloadHls(t *testing.T) {
 	var (
 		headers = map[string]string{
@@ -26,6 +28,30 @@ func TestDownloadHls(t *testing.T) {
 			UseProxy:    1,
 			Headers:     headers,
 		}
-		DownloadHls(req)
+		download(req)
+	}
+}
+
+func download(req *v1.DownloadReq) {
+	var bar *progressbar.ProgressBar
+	progressCh := make(chan *Progress)
+
+	go func() {
+		DownloadHls(req, progressCh)
+		close(progressCh)
+	}()
+
+	for {
+		select {
+		case progress, ok := <-progressCh:
+			if !ok {
+				return
+			}
+			if bar != nil {
+				bar.Add(1)
+			} else {
+				bar = NewProgressBar(progress.Total, req.Name+" 下载中")
+			}
+		}
 	}
 }
