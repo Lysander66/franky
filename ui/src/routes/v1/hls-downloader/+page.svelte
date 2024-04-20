@@ -2,7 +2,6 @@
 	import { DOWNLOAD_HLS_URL } from '$lib/api'
 	import { toast } from 'svelte-sonner'
 	import { fetchEventSource } from '@microsoft/fetch-event-source'
-	import ProgressBar from '@okrad/svelte-progressbar'
 
 	const placeholder = `{
     "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
@@ -16,9 +15,9 @@
 		use_proxy: 1
 	}
 
+	// https://svelte.dev/examples/tweened
+	let progress = 0
 	let downloading = false
-
-	const series = { perc: 0, color: '#4CAF50' }
 
 	async function handleSubmit() {
 		if (downloading) {
@@ -48,7 +47,7 @@
 			onmessage(ev) {
 				const eventData = JSON.parse(ev.data)
 				if (eventData.completed !== 1) {
-					series.perc = ((100 * eventData.n) / eventData.total).toFixed(1)
+					progress = ((100 * eventData.n) / eventData.total).toFixed(1)
 				}
 			},
 			onopen() {
@@ -69,8 +68,12 @@
 	<title>m3u8 下载</title>
 </svelte:head>
 
-<div class="mx-20 my-10">
-	<ProgressBar {series} />
+<div
+	class="radial-progress float-left ml-20 mt-20 text-success"
+	style="--value:{progress}; --size:12rem; --thickness: 5px;"
+	role="progressbar"
+>
+	{progress}%
 </div>
 
 <div class="relative mx-auto my-6 w-2/4 max-w-3xl">
