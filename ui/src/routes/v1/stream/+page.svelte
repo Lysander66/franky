@@ -33,7 +33,7 @@
 		const rawURL = MEDIA_LIST_URL + `?app=${app}`
 		const response = await fetch(rawURL)
 		const resp = await response.json()
-		// if (resp.code !== 0) { }
+		// if (resp.status !== 0) { }
 		data = resp.data
 		return resp.data
 	}
@@ -99,7 +99,7 @@
 		</div>
 	</div>
 
-	{#if data.list && data.list.length > 0}
+	{#if data.items && data.items.length > 0}
 		<div class="mt-8 rounded-2xl" style="background-color: rgba(158, 158, 158, 0.3)">
 			<div class="container mx-auto">
 				<div class="py-8">
@@ -119,7 +119,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									{#each data.list as v, i}
+									{#each data.items as v, i}
 										<tr>
 											<td class="border-b border-gray-200 px-5 py-5 text-sm"> {i + 1}</td>
 
