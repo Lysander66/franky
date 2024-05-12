@@ -50,26 +50,25 @@ const data = {
 
   1: [{ title: '仙逆', start: '10:00' }],
 
-  2: [{ title: '炼气十万年', start: '10:00' }],
+  2: [{ title: '吞噬星空', start: '10:00', backgroundColor: 'green' }],
 
   3: [
     { title: '遮天', start: '10:00' },
-    { title: '少年歌行', start: '10:00' },
   ],
 
-  4: [{ title: '师兄啊师兄', start: '10:00' }],
+  4: [
+    { title: '神印王座', start: '10:00', backgroundColor: 'green' },
+    { title: '师兄啊师兄', start: '10:00' }
+  ],
 
   5: [
-    { title: '百炼成神', start: '10:00', backgroundColor: 'green' },
-    { title: '完美世界', start: '10:00' },
-    { title: '大主宰年番', start: '10:00' },
+    { title: '百炼成神', start: '10:00' },
+    { title: '永生之气壮山河 ', start: '12:00' }
   ],
 
   6: [
     { title: '诛仙', start: '10:00' },
-    { title: '逆天邪神', start: '10:00' },
-    { title: '炼气十万年', start: '10:00' },
-    { title: '斗罗大陆Ⅱ绝世唐门', start: '10:00' },
-    { title: '凡人修仙传', start: '11:00', backgroundColor: 'green' },
+    { title: '凡人修仙传', start: '11:00' },
   ]
 }
+

@@ -23,11 +23,11 @@ export const data = [
 				icon: EventsIcon,
 				link: '/v1/calendar'
 			},
-			{
-				title: 'Live Stream',
-				icon: PicturesIcon,
-				link: '/v1/stream'
-			},
+			// {
+			// 	title: 'Live Stream',
+			// 	icon: PicturesIcon,
+			// 	link: '/v1/stream'
+			// },
 			{
 				title: 'HLS Downloader',
 				icon: PicturesIcon,
