@@ -1,0 +1,128 @@
+{
+  "title": "直播流",
+  "data": {
+    "appOpts": [
+      {
+        "label": "电竞",
+        "value": "esport"
+      },
+      {
+        "label": "体育",
+        "value": "sport"
+      }
+    ]
+  },
+  "body": {
+    "type": "crud",
+    "id": "crud_1",
+    "syncLocation": false,
+    "api": "/mez/api/v8/live/mediaList",
+    "parsePrimitiveQuery": {
+      "enable": true,
+      "types": [
+        "boolean",
+        "number"
+      ]
+    },
+    "headerToolbar": [
+      {
+        "type": "tpl",
+        "tpl": "total: ${total}",
+        "className": "v-middle"
+      }
+    ],
+    "footerToolbar": [],
+    "filter": {
+      "debug": false,
+      "title": "条件搜索",
+      "body": [
+        {
+          "type": "group",
+          "body": [
+            {
+              "type": "select",
+              "name": "app",
+              "label": "App",
+              "source": "${appOpts}",
+              "clearable": true,
+              "size": "sm",
+              "onEvent": {
+                "change": {
+                  "actions": [
+                    {
+                      "componentId": "crud_1",
+                      "actionType": "reload",
+                      "data": {
+                        "app": "${app}"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "columns": [
+      {
+        "label": "region ",
+        "type": "tpl",
+        "tpl": "<a href='http://${ip}:8281/api/v1/stat/allGroup?schema=rtmp' target='_blank'>${region}</a>"
+      },
+      {
+        "label": "local",
+        "type": "tpl",
+        "tpl": "<a href='http://localhost:5173/player?u=http://${ip}:8280/${app}/${stream}.live.flv' target='_blank'>${stream}</a>"
+      },
+      {
+        "label": "alive",
+        "type": "tpl",
+        "tpl": "${FLOOR(alive_second / 60, 0)} m ${alive_second % 60} s"
+      },
+      {
+        "label": "remote",
+        "type": "tpl",
+        "tpl": "<a href='http://ply.marzesport.cn/?url=${link}' target='_blank'>${link ? 'play' : ''}</a>"
+      },
+      {
+        "name": "vcodec",
+        "label": "vcodec"
+      },
+      {
+        "label": "resolution",
+        "type": "tpl",
+        "tpl": "${width} x ${height}"
+      },
+      {
+        "label": "bit rate",
+        "type": "tpl",
+        "tpl": "${ROUND(bytes_speed * 8 / 1000 / 1000)} Mbps"
+      },
+      {
+        "name": "publish_time",
+        "label": "publish time"
+      },
+      {
+        "name": "fps",
+        "label": "fps"
+      },
+      {
+        "label": "sample",
+        "type": "tpl",
+        "tpl": "${sample_rate} x ${sample_bit}"
+      },
+      {
+        "label": "created at",
+        "type": "tpl",
+        "tpl": "${DATETOSTR(create_stamp, 'HH:mm:ss')}"
+      },
+      {
+        "label": "url",
+        "type": "tpl",
+        "tpl": "${origin_url|truncate:20}",
+        "popOver": "${origin_url}"
+      }
+    ]
+  }
+}
