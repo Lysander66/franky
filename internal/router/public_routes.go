@@ -5,12 +5,12 @@ import (
 )
 
 func PublicRoutes(app *fiber.App) {
-	api := app.Group("/api/v1")
+	r := app.Group("/api/v1")
 
-	// Anime
-	api.Get("/anime", GetAllAnimes)
-	api.Post("/anime", UpsertAnime)
-	api.Delete("/anime/:id", DeleteAnime)
+	// Animated series
+	r.Get("/anime", GetAllAnimatedSeries)
+	r.Post("/anime", UpsertAnimatedSeries)
+	r.Delete("/anime/:id", RemoveAnimatedSeries)
 
-	downloadRoutes(api)
+	downloadRoutes(r)
 }

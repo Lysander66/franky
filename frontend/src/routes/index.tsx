@@ -16,7 +16,7 @@ const Router = () => {
     <Routes>
       <Route path='/login' element={<Login />}></Route>
       <Route path='/' element={<Layout />}>
-        <Route path='/' element={<Navigate to="/app/stream" />}></Route>
+        <Route path='/' element={<Navigate to="/app/animation" />}></Route>
         <Route path='/*' element={lazyLoad(lazy(async () => import('@/pages/Admin/index.tsx')))}></Route>
       </Route>
     </Routes>

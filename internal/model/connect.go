@@ -18,7 +18,7 @@ func ConnectDB() {
 		panic(err)
 	}
 
-	db.AutoMigrate(&AnimeInfo{})
+	db.AutoMigrate(&AnimatedSeries{})
 
 	DB = db
 }

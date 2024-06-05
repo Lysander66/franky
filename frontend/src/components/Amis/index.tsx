@@ -37,7 +37,7 @@ const Amis = ({ schema }: Props) => {
             headers, 
           }: any) => {
             config = config || {}
-            config.withCredentials = true
+            config.withCredentials = false
             responseType && (config.responseType = responseType)
 
             if (config.cancelExecutor) {

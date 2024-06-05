@@ -1,0 +1,262 @@
+{
+  "title": "追番表",
+  "data": {
+    "platformOpts": [
+      {
+        "label": "爱奇艺",
+        "value": "爱奇艺"
+      },
+      {
+        "label": "优酷",
+        "value": "优酷"
+      },
+      {
+        "label": "腾讯",
+        "value": "腾讯"
+      }
+    ]
+  },
+  "toolbar": [
+    {
+      "type": "button",
+      "actionType": "dialog",
+      "label": "新增",
+      "primary": true,
+      "dialog": {
+        "title": "新增",
+        "body": {
+          "type": "form",
+          "name": "sample-edit-form",
+          "api": "post:/api/v1/anime",
+          "body": [
+            {
+              "type": "input-text",
+              "name": "Name",
+              "label": "动画",
+              "required": true
+            },
+            {
+              "type": "input-text",
+              "name": "Novel",
+              "label": "小说"
+            },
+            {
+              "type": "input-text",
+              "name": "PlaybackPlatform",
+              "label": "平台"
+            },
+            {
+              "type": "input-text",
+              "name": "WeeklyUpdateTime",
+              "label": "每周更新"
+            },
+            {
+              "type": "input-text",
+              "name": "Production",
+              "label": "制作"
+            },
+            {
+              "type": "input-number",
+              "name": "Rating",
+              "label": "评分",
+              "precision": 1,
+              "step": 0.1
+            },
+            {
+              "type": "input-text",
+              "name": "EventId",
+              "label": "EventId"
+            },
+            {
+              "type": "input-number",
+              "name": "Episode",
+              "label": "Episode"
+            },
+            {
+              "type": "input-date",
+              "name": "PublishTime",
+              "label": "更新时间",
+              "format": "YYYY-MM-DD"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "body": {
+    "type": "crud",
+    "id": "crud_1",
+    "syncLocation": false,
+    "api": "/api/v1/anime",
+    "parsePrimitiveQuery": {
+      "enable": true,
+      "types": [
+        "boolean",
+        "number"
+      ]
+    },
+    "headerToolbar": [
+      {
+        "type": "tpl",
+        "tpl": "total: ${total}",
+        "className": "v-middle"
+      }
+    ],
+    "footerToolbar": [],
+    "filter": {
+      "debug": false,
+      "title": "条件搜索",
+      "body": [
+        {
+          "type": "group",
+          "body": [
+            {
+              "type": "select",
+              "name": "PlaybackPlatform",
+              "label": "源",
+              "source": "${platformOpts}",
+              "clearable": true,
+              "size": "sm",
+              "onEvent": {
+                "change": {
+                  "actions": [
+                    {
+                      "componentId": "crud_1",
+                      "actionType": "reload",
+                      "data": {
+                        "PlaybackPlatform": "${PlaybackPlatform}"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "columns": [
+      {
+        "name": "ID",
+        "label": "ID"
+      },
+      {
+        "name": "Name",
+        "label": "动画"
+      },
+      {
+        "label": "播放",
+        "type": "tpl",
+        "tpl": "<a href='${Link}' target='_blank'>Episode ${Episode}</a>"
+      },
+      {
+        "label": "更新时间",
+        "type": "tpl",
+        "tpl": "${DATETOSTR(PublishTime, 'YYYY-MM-DD')}"
+      },
+      {
+        "name": "PlaybackPlatform",
+        "label": "平台"
+      },
+      {
+        "name": "WeeklyUpdateTime",
+        "label": "每周更新"
+      },
+      {
+        "label": "制作",
+        "type": "tpl",
+        "tpl": "${Production|truncate:20}",
+        "popOver": "${Production}"
+      },
+      {
+        "name": "Rating",
+        "label": "评分"
+      },
+      {
+        "type": "operation",
+        "label": "操作",
+        "buttons": [
+          {
+            "label": "修改",
+            "type": "button",
+            "level": "link",
+            "actionType": "dialog",
+            "dialog": {
+              "title": "修改",
+              "body": {
+                "type": "form",
+                "api": "post:/api/v1/anime",
+                "body": [
+                  {
+                    "type": "input-text",
+                    "name": "ID",
+                    "label": "ID",
+                    "disabled": true
+                  },
+                  {
+                    "type": "input-text",
+                    "name": "Name",
+                    "label": "动画",
+                    "required": true
+                  },
+                  {
+                    "type": "input-text",
+                    "name": "Novel",
+                    "label": "小说"
+                  },
+                  {
+                    "type": "input-text",
+                    "name": "PlaybackPlatform",
+                    "label": "平台"
+                  },
+                  {
+                    "type": "input-text",
+                    "name": "WeeklyUpdateTime",
+                    "label": "每周更新"
+                  },
+                  {
+                    "type": "input-text",
+                    "name": "Production",
+                    "label": "制作"
+                  },
+                  {
+                    "type": "input-number",
+                    "name": "Rating",
+                    "label": "评分",
+                    "precision": 1,
+                    "step": 0.1
+                  },
+                  {
+                    "type": "input-text",
+                    "name": "EventId",
+                    "label": "EventId"
+                  },
+                  {
+                    "type": "input-number",
+                    "name": "Episode",
+                    "label": "Episode"
+                  },
+                  {
+                    "type": "input-date",
+                    "name": "PublishTime",
+                    "label": "更新时间",
+                    "format": "YYYY-MM-DD"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "label": "删除",
+            "type": "button",
+            "actionType": "ajax",
+            "level": "link",
+            "className": "text-danger",
+            "confirmText": "确认要删除？",
+            "api": "delete:/api/v1/anime/${id}"
+          }
+        ]
+      }
+    ]
+  }
+}
