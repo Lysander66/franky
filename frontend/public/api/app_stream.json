@@ -73,7 +73,7 @@
       {
         "label": "local",
         "type": "tpl",
-        "tpl": "<a href='http://localhost:5173/player?u=http://${ip}:8280/${app}/${stream}.live.flv' target='_blank'>${stream}</a>"
+        "tpl": "<a href='/player?u=http://${ip}:8280/${app}/${stream}.live.flv' target='_blank'>${stream}</a>"
       },
       {
         "label": "alive",

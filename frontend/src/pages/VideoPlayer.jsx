@@ -1,0 +1,19 @@
+import './style/VideoPlayer.scss'
+import ReactPlayer from 'react-player'
+import { useSearchParams } from 'react-router-dom'
+
+const VideoPlayer = () => {
+  let [searchParams] = useSearchParams()
+  const url =
+    searchParams.get('u') ||
+    'https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8'
+  return (
+    <div className="container">
+      <div className="video">
+        <ReactPlayer url={url} width="1920" height="1080" playing controls />
+      </div>
+    </div>
+  )
+}
+
+export default VideoPlayer

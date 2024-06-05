@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(@/assets/deepsea.webp);
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+.video {
+  margin: 0 0 7rem 0;
+}

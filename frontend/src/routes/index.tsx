@@ -3,6 +3,7 @@ import Loading from '@/components/Loading'
 import { lazy, Suspense } from 'react'
 import Layout from '@/layout'
 import Login from '@/pages/Login/index.tsx'
+import VideoPlayer from '@/pages/VideoPlayer.jsx'
 
 const lazyLoad = (Component: React.LazyExoticComponent<() => JSX.Element>) => {
   return (
@@ -14,10 +15,16 @@ const lazyLoad = (Component: React.LazyExoticComponent<() => JSX.Element>) => {
 const Router = () => {
   return (
     <Routes>
-      <Route path='/login' element={<Login />}></Route>
-      <Route path='/' element={<Layout />}>
-        <Route path='/' element={<Navigate to="/app/animation" />}></Route>
-        <Route path='/*' element={lazyLoad(lazy(async () => import('@/pages/Admin/index.tsx')))}></Route>
+      <Route path="/login" element={<Login />}></Route>
+      <Route path="/player" element={<VideoPlayer />}></Route>
+      <Route path="/login" element={<Login />}></Route>
+      <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Navigate to="/app/animation" />}></Route>
+        <Route
+          path="/*"
+          element={lazyLoad(
+            lazy(async () => import('@/pages/Admin/index.tsx'))
+          )}></Route>
       </Route>
     </Routes>
   )
