@@ -9,6 +9,7 @@ import useStore from '@/store/layout'
 import { useCallback, useEffect } from 'react'
 import menuConfig from './menu'
 import styles from './index.module.scss'
+import { Toaster } from 'sonner'
 
 const App = () => {
   const { pathname } = useLocation()
@@ -30,36 +31,40 @@ const App = () => {
     }
   }, [navigate, pathname])
   return (
-    <Layout className={styles.container}>
-      <Layout.Header>
-        <div className={styles.navbar}>
-          <div className={styles.logo} onClick={goHome}>
-            <h1>
-              <img src={logoImg} />
-              <span>火拳</span>
-            </h1>
-          </div>
-          <Toolbar />
-        </div>
-      </Layout.Header>
-      <Layout>
-        <Layout.Sider
-          width={220}
-          defaultCollapsed={collapse}
-          collapsible={true}
-          onCollapse={onCollapse}
-          trigger={
-            <div className={styles.collapse}>
-              {collapse ? <IconMenuUnfold /> : <IconMenuFold />}
+    <>
+      <Layout className={styles.container}>
+        <Layout.Header>
+          <div className={styles.navbar}>
+            <div className={styles.logo} onClick={goHome}>
+              <h1>
+                <img src={logoImg} />
+                <span>火拳</span>
+              </h1>
             </div>
-          }>
-          <Sidebar config={menuConfig} />
-        </Layout.Sider>
-        <Layout.Content className={styles.content}>
-          <Outlet />
-        </Layout.Content>
+            <Toolbar />
+          </div>
+        </Layout.Header>
+        <Layout>
+          <Layout.Sider
+            width={220}
+            defaultCollapsed={collapse}
+            collapsible={true}
+            onCollapse={onCollapse}
+            trigger={
+              <div className={styles.collapse}>
+                {collapse ? <IconMenuUnfold /> : <IconMenuFold />}
+              </div>
+            }>
+            <Sidebar config={menuConfig} />
+          </Layout.Sider>
+          <Layout.Content className={styles.content}>
+            <Outlet />
+          </Layout.Content>
+        </Layout>
       </Layout>
-    </Layout>
+
+      <Toaster richColors position="top-center" />
+    </>
   )
 }
 

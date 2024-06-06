@@ -1,4 +1,5 @@
 import ReactDOM from 'react-dom/client'
+import './main.css'
 import 'amis/lib/themes/cxd.css'
 import 'amis/lib/themes/antd.css'
 import 'amis/lib/helper.css'

@@ -16,6 +16,7 @@
     "@fullcalendar/list": "^6.1.14",
     "@fullcalendar/react": "^6.1.14",
     "@fullcalendar/timegrid": "^6.1.14",
+    "@microsoft/fetch-event-source": "^2.0.1",
     "amis": "^6.2.2",
     "amis-ui": "^6.2.2",
     "axios": "^1.6.7",
@@ -23,8 +24,10 @@
     "nanoid": "^5.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.51.5",
     "react-player": "^2.16.0",
     "react-router-dom": "^6.22.2",
+    "sonner": "^1.4.41",
     "zustand": "^4.5.2"
   },
   "devDependencies": {
@@ -33,10 +36,14 @@
     "@typescript-eslint/eslint-plugin": "^7.0.2",
     "@typescript-eslint/parser": "^7.0.2",
     "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.19",
+    "daisyui": "^4.12.2",
     "eslint": "^8.56.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "postcss": "^8.4.38",
     "sass": "^1.71.1",
+    "tailwindcss": "^3.4.4",
     "typescript": "^5.2.2",
     "vite": "^5.1.4"
   }
