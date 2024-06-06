@@ -3,7 +3,9 @@ import Loading from '@/components/Loading'
 import { lazy, Suspense } from 'react'
 import Layout from '@/layout'
 import Login from '@/pages/Login/index.tsx'
-import VideoPlayer from '@/pages/VideoPlayer.jsx'
+import Calendar from '@/pages/Calendar'
+import Downloader from '@/pages/Downloader'
+import VideoPlayer from '@/pages/VideoPlayer'
 
 const lazyLoad = (Component: React.LazyExoticComponent<() => JSX.Element>) => {
   return (
@@ -17,9 +19,10 @@ const Router = () => {
     <Routes>
       <Route path="/login" element={<Login />}></Route>
       <Route path="/player" element={<VideoPlayer />}></Route>
-      <Route path="/login" element={<Login />}></Route>
       <Route path="/" element={<Layout />}>
-        <Route path="/" element={<Navigate to="/app/animation" />}></Route>
+      <Route path="/calendar" element={<Calendar />}></Route>
+      <Route path="/downloader" element={<Downloader />}></Route>
+        <Route path="/" element={<Navigate to="/calendar" />}></Route>
         <Route
           path="/*"
           element={lazyLoad(

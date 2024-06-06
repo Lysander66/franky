@@ -11,6 +11,11 @@
   },
   "dependencies": {
     "@arco-design/web-react": "^2.60.2",
+    "@fullcalendar/core": "^6.1.14",
+    "@fullcalendar/daygrid": "^6.1.14",
+    "@fullcalendar/list": "^6.1.14",
+    "@fullcalendar/react": "^6.1.14",
+    "@fullcalendar/timegrid": "^6.1.14",
     "amis": "^6.2.2",
     "amis-ui": "^6.2.2",
     "axios": "^1.6.7",

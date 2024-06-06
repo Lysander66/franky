@@ -11,6 +11,21 @@ importers:
       '@arco-design/web-react':
         specifier: ^2.60.2
         version: 2.60.2(@types/react@18.2.56)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@fullcalendar/core':
+        specifier: ^6.1.14
+        version: 6.1.14
+      '@fullcalendar/daygrid':
+        specifier: ^6.1.14
+        version: 6.1.14(@fullcalendar/core@6.1.14)
+      '@fullcalendar/list':
+        specifier: ^6.1.14
+        version: 6.1.14(@fullcalendar/core@6.1.14)
+      '@fullcalendar/react':
+        specifier: ^6.1.14
+        version: 6.1.14(@fullcalendar/core@6.1.14)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@fullcalendar/timegrid':
+        specifier: ^6.1.14
+        version: 6.1.14(@fullcalendar/core@6.1.14)
       amis:
         specifier: ^6.2.2
         version: 6.2.2(@types/react@18.2.56)(amis-core@6.2.2(@types/react@18.2.56)(amis-formula@6.2.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(amis-ui@6.2.2(@types/react@18.2.56)(amis-core@6.2.2(@types/react@18.2.56)(amis-formula@6.2.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(amis-formula@6.2.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(office-viewer@0.2.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -363,6 +378,31 @@ packages:
 
   '@fast-csv/parse@4.3.6':
     resolution: {integrity: sha512-uRsLYksqpbDmWaSmzvJcuApSEe38+6NQZBUsuAyMZKqHxH0g1wcJgsKUvN3WC8tewaqFjBMMGrkHmC+T7k8LvA==}
+
+  '@fullcalendar/core@6.1.14':
+    resolution: {integrity: sha512-hIPRBevm0aMc2aHy1hRIJgXmI1QTvQM1neQa9oxtuqUmF1+ApYC3oAdwcQMTuI7lHHw3pKJDyJFkKLPPnL6HXA==}
+
+  '@fullcalendar/daygrid@6.1.14':
+    resolution: {integrity: sha512-DSyjiA1dEM8k3bOCrZpZOmAOZu71KGtH02ze+4QKuhxkmn/zQghmmLRdfzpOrcyJg6xGKkoB4pBcO+2lXar8XQ==}
+    peerDependencies:
+      '@fullcalendar/core': ~6.1.14
+
+  '@fullcalendar/list@6.1.14':
+    resolution: {integrity: sha512-eV0/6iCumYfvlPzIUTAONWH17/JlQCyCChUz8m06L4E/sOiNjkHGz8vlVTmZKqXzx9oWOOyV/Nm3pCtHmVZh+Q==}
+    peerDependencies:
+      '@fullcalendar/core': ~6.1.14
+
+  '@fullcalendar/react@6.1.14':
+    resolution: {integrity: sha512-sXLn2D8aPYLuDH3fy2ZhHTOz5WNSU1NhoECsGBzjUtz2IYHy6m5Y9TqlyqeAqVqFLDRSJAlKAr5LyrIvnD/IMA==}
+    peerDependencies:
+      '@fullcalendar/core': ~6.1.14
+      react: ^16.7.0 || ^17 || ^18 || ^19
+      react-dom: ^16.7.0 || ^17 || ^18 || ^19
+
+  '@fullcalendar/timegrid@6.1.14':
+    resolution: {integrity: sha512-ZByc3BVAtxWSVfyaNedROLlg/Tb2NQ43+MZZAfBSrVwVm2xyfQ+Bsx3pJyCXsRsUh2TFFTO07q7nMWe0jet3KQ==}
+    peerDependencies:
+      '@fullcalendar/core': ~6.1.14
 
   '@humanwhocodes/config-array@0.11.14':
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
@@ -1548,6 +1588,9 @@ packages:
     resolution: {integrity: sha512-u5U8qYpBCpN13BsiEB0CbR1Hhh4Gc0zLFuedrHJKMctHCHAGrMdG0PRM/KErzAL3CU6/eckEtmHNB3x6e3c0vA==}
     engines: {node: ^10 || ^12 || >=14}
 
+  preact@10.12.1:
+    resolution: {integrity: sha512-l8386ixSsBdbreOAkqtrwqHwdvR35ID8c3rKPa8lCWuO86dBi32QWHV4vfsZK1utLLFMvw+Z5Ad4XLkZzchscg==}
+
   prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
@@ -2420,6 +2463,29 @@ snapshots:
       lodash.isnil: 4.0.0
       lodash.isundefined: 3.0.1
       lodash.uniq: 4.5.0
+
+  '@fullcalendar/core@6.1.14':
+    dependencies:
+      preact: 10.12.1
+
+  '@fullcalendar/daygrid@6.1.14(@fullcalendar/core@6.1.14)':
+    dependencies:
+      '@fullcalendar/core': 6.1.14
+
+  '@fullcalendar/list@6.1.14(@fullcalendar/core@6.1.14)':
+    dependencies:
+      '@fullcalendar/core': 6.1.14
+
+  '@fullcalendar/react@6.1.14(@fullcalendar/core@6.1.14)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      '@fullcalendar/core': 6.1.14
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+
+  '@fullcalendar/timegrid@6.1.14(@fullcalendar/core@6.1.14)':
+    dependencies:
+      '@fullcalendar/core': 6.1.14
+      '@fullcalendar/daygrid': 6.1.14(@fullcalendar/core@6.1.14)
 
   '@humanwhocodes/config-array@0.11.14':
     dependencies:
@@ -3724,6 +3790,8 @@ snapshots:
       nanoid: 3.3.7
       picocolors: 1.0.0
       source-map-js: 1.0.2
+
+  preact@10.12.1: {}
 
   prelude-ls@1.2.1: {}
 
