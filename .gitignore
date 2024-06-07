@@ -36,3 +36,4 @@ main
 output/
 temp/
 .zed/
+.env

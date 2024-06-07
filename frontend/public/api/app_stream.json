@@ -16,7 +16,7 @@
     "type": "crud",
     "id": "crud_1",
     "syncLocation": false,
-    "api": "/mez/api/v8/live/mediaList",
+    "api": "/api/v8/live/mediaList",
     "parsePrimitiveQuery": {
       "enable": true,
       "types": [

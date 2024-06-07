@@ -1,6 +1,7 @@
 {
   "title": "追番表",
   "data": {
+    "ENDPOINT": "/api/v1/anime",
     "platformOpts": [
       {
         "label": "爱奇艺",
@@ -27,7 +28,7 @@
         "body": {
           "type": "form",
           "name": "sample-edit-form",
-          "api": "post:/api/v1/anime",
+          "api": "post:${ENDPOINT}",
           "body": [
             {
               "type": "input-text",
@@ -88,13 +89,6 @@
     "id": "crud_1",
     "syncLocation": false,
     "api": "/api/v1/anime",
-    "parsePrimitiveQuery": {
-      "enable": true,
-      "types": [
-        "boolean",
-        "number"
-      ]
-    },
     "headerToolbar": [
       {
         "type": "tpl",
@@ -185,7 +179,7 @@
               "title": "修改",
               "body": {
                 "type": "form",
-                "api": "post:/api/v1/anime",
+                "api": "post:${ENDPOINT}",
                 "body": [
                   {
                     "type": "input-text",
@@ -253,7 +247,7 @@
             "level": "link",
             "className": "text-danger",
             "confirmText": "确认要删除？",
-            "api": "delete:/api/v1/anime/${id}"
+            "api": "delete:${ENDPOINT}/${id}"
           }
         ]
       }
