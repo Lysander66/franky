@@ -6,6 +6,7 @@ require (
 	github.com/Lysander66/ace v0.2.8
 	github.com/gofiber/fiber/v3 v3.0.0-beta.2
 	github.com/joho/godotenv v1.5.1
+	github.com/lib/pq v1.10.9
 	github.com/schollz/progressbar/v3 v3.14.2
 	gorm.io/driver/sqlite v1.5.5
 	gorm.io/gorm v1.25.10

@@ -2,6 +2,8 @@ package model
 
 import (
 	"time"
+
+	"github.com/lib/pq"
 )
 
 var AnimatedSeriesDao = new(AnimatedSeries)
@@ -12,7 +14,7 @@ type AnimatedSeries struct {
 	Link             string
 	Episode          int
 	PublishTime      string
-	WeeklyUpdateTime string
+	WeeklyUpdateTime pq.Int64Array `gorm:"type:int[]"`
 	Production       string
 	PlaybackPlatform string
 	Novel            string

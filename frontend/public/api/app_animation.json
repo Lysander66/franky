@@ -2,18 +2,67 @@
   "title": "追番表",
   "data": {
     "ENDPOINT": "/api/v1/anime",
+    "platformMap": {
+      "iqiyi": "爱奇艺",
+      "youku": "优酷",
+      "qq": "腾讯"
+    },
     "platformOpts": [
       {
         "label": "爱奇艺",
-        "value": "爱奇艺"
+        "value": "iqiyi"
       },
       {
         "label": "优酷",
-        "value": "优酷"
+        "value": "youku"
       },
       {
         "label": "腾讯",
-        "value": "腾讯"
+        "value": "qq"
+      }
+    ],
+    "weekMap": {
+      "0": "周日",
+      "1": "周一",
+      "2": "周二",
+      "3": "周三",
+      "4": "周四",
+      "5": "周五",
+      "6": "周六"
+    },
+    "weekOpts": [
+      {
+        "label": "",
+        "children": [
+          {
+            "label": "周一",
+            "value": 1
+          },
+          {
+            "label": "周二",
+            "value": 2
+          },
+          {
+            "label": "周三",
+            "value": 3
+          },
+          {
+            "label": "周四",
+            "value": 4
+          },
+          {
+            "label": "周五",
+            "value": 5
+          },
+          {
+            "label": "周六",
+            "value": 6
+          },
+          {
+            "label": "周日",
+            "value": 0
+          }
+        ]
       }
     ]
   },
@@ -42,14 +91,23 @@
               "label": "小说"
             },
             {
-              "type": "input-text",
+              "type": "select",
               "name": "PlaybackPlatform",
-              "label": "平台"
+              "label": "平台",
+              "source": "${platformOpts}"
             },
             {
-              "type": "input-text",
+              "type": "select",
               "name": "WeeklyUpdateTime",
-              "label": "每周更新"
+              "label": "每周更新",
+              "checkAll": true,
+              "multiple": true,
+              "joinValues": false,
+              "extractValue": true,
+              "searchable": true,
+              "selectMode": "group",
+              "source": "${weekOpts}",
+              "required": true
             },
             {
               "type": "input-text",
@@ -136,7 +194,8 @@
       },
       {
         "name": "Name",
-        "label": "动画"
+        "label": "动画",
+        "copyable": true
       },
       {
         "label": "播放",
@@ -150,16 +209,20 @@
       },
       {
         "name": "PlaybackPlatform",
-        "label": "平台"
+        "label": "平台",
+        "type": "mapping",
+        "source": "${platformMap}"
       },
       {
         "name": "WeeklyUpdateTime",
-        "label": "每周更新"
+        "label": "每周更新",
+        "type": "mapping",
+        "source": "${weekMap}"
       },
       {
         "label": "制作",
         "type": "tpl",
-        "tpl": "${Production|truncate:20}",
+        "tpl": "${Production|truncate:80}",
         "popOver": "${Production}"
       },
       {
@@ -199,14 +262,23 @@
                     "label": "小说"
                   },
                   {
-                    "type": "input-text",
+                    "type": "select",
                     "name": "PlaybackPlatform",
-                    "label": "平台"
+                    "label": "平台",
+                    "source": "${platformOpts}"
                   },
                   {
-                    "type": "input-text",
+                    "type": "select",
                     "name": "WeeklyUpdateTime",
-                    "label": "每周更新"
+                    "label": "每周更新",
+                    "checkAll": true,
+                    "multiple": true,
+                    "joinValues": false,
+                    "extractValue": true,
+                    "searchable": true,
+                    "selectMode": "group",
+                    "source": "${weekOpts}",
+                    "required": true
                   },
                   {
                     "type": "input-text",
