@@ -3,11 +3,16 @@
   "data": {
     "ENDPOINT": "/api/v1/anime",
     "platformMap": {
+      "bilibili": "B站",
       "iqiyi": "爱奇艺",
       "youku": "优酷",
       "qq": "腾讯"
     },
     "platformOpts": [
+      {
+        "label": "哔哩哔哩",
+        "value": "bilibili"
+      },
       {
         "label": "爱奇艺",
         "value": "iqiyi"
@@ -115,6 +120,11 @@
               "label": "制作"
             },
             {
+              "type": "input-text",
+              "name": "Description",
+              "label": "说明"
+            },
+            {
               "type": "input-number",
               "name": "Rating",
               "label": "评分",
@@ -130,6 +140,11 @@
               "type": "input-number",
               "name": "Episode",
               "label": "Episode"
+            },
+            {
+              "type": "input-text",
+              "name": "Link",
+              "label": "播放链接"
             },
             {
               "type": "input-date",
@@ -195,12 +210,12 @@
       {
         "name": "Name",
         "label": "动画",
-        "copyable": true
+        "copyable": false
       },
       {
         "label": "播放",
         "type": "tpl",
-        "tpl": "<a href='${Link}' target='_blank'>Episode ${Episode}</a>"
+        "tpl": "<a href='${Link}' target='_blank'>第 ${Episode} 集</a>"
       },
       {
         "label": "更新时间",
@@ -222,8 +237,14 @@
       {
         "label": "制作",
         "type": "tpl",
-        "tpl": "${Production|truncate:80}",
+        "tpl": "${Production|truncate:50}",
         "popOver": "${Production}"
+      },
+      {
+        "label": "说明",
+        "type": "tpl",
+        "tpl": "${Description|truncate:80}",
+        "popOver": "${Description}"
       },
       {
         "name": "Rating",
@@ -286,6 +307,11 @@
                     "label": "制作"
                   },
                   {
+                    "type": "input-text",
+                    "name": "Description",
+                    "label": "说明"
+                  },
+                  {
                     "type": "input-number",
                     "name": "Rating",
                     "label": "评分",
@@ -301,6 +327,11 @@
                     "type": "input-number",
                     "name": "Episode",
                     "label": "Episode"
+                  },
+                  {
+                    "type": "input-text",
+                    "name": "Link",
+                    "label": "播放链接"
                   },
                   {
                     "type": "input-date",

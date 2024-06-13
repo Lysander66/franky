@@ -24,9 +24,9 @@ export default [
     icon: 'IconFileVideo',
   },
   {
-    label: '下载器',
+    label: 'HLS 下载',
     path: '/downloader',
     key: 'downloader',
     icon: 'IconThunderbolt',
-  }
+  },
 ]
