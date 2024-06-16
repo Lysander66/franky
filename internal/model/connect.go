@@ -9,7 +9,7 @@ import (
 var DB *gorm.DB
 
 func ConnectDB() {
-	db, err := gorm.Open(sqlite.Open("data.sqlite3"), &gorm.Config{
+	db, err := gorm.Open(sqlite.Open("store.sqlite3"), &gorm.Config{
 		NamingStrategy: schema.NamingStrategy{
 			SingularTable: true,
 		},

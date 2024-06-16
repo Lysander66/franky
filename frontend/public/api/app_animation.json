@@ -161,6 +161,13 @@
     "type": "crud",
     "id": "crud_1",
     "syncLocation": false,
+    "itemBadge": {
+      "text": "",
+      "mode": "ribbon",
+      "position": "top-left",
+      "level": "${BadgeLevel}",
+      "visibleOn": "this.BadgeLevel"
+    },
     "api": "/api/v1/anime",
     "headerToolbar": [
       {
@@ -209,8 +216,11 @@
       },
       {
         "name": "Name",
-        "label": "动画",
-        "copyable": false
+        "label": "动画"
+      },
+      {
+        "name": "Production",
+        "label": "制作"
       },
       {
         "label": "播放",
@@ -233,12 +243,6 @@
         "label": "每周更新",
         "type": "mapping",
         "source": "${weekMap}"
-      },
-      {
-        "label": "制作",
-        "type": "tpl",
-        "tpl": "${Production|truncate:50}",
-        "popOver": "${Production}"
       },
       {
         "label": "说明",

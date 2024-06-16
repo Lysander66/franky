@@ -18,10 +18,11 @@ type AnimatedSeries struct {
 	Production       string
 	PlaybackPlatform string
 	Novel            string
-	EventId          string //
-	Type             string //Action, Adventure, Fantasy ...
+	EventId          string
+	Type             string
 	Description      string
-	Rating           float32   `sql:"type:decimal(8,4)"`
+	Rating           float32 `sql:"type:decimal(8,4)"`
+	BadgeLevel       string
 	CreatedAt        time.Time `gorm:"<-:create"`
 	UpdatedAt        time.Time
 }

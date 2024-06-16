@@ -8,15 +8,18 @@ import (
 	v1 "github.com/Lysander66/franky/api/v1"
 	"github.com/Lysander66/franky/internal/model"
 	"github.com/gofiber/fiber/v3"
+	"github.com/jinzhu/copier"
 )
 
 func GetAllAnimatedSeries(c fiber.Ctx) error {
 	platform := strings.TrimSpace(c.Query("PlaybackPlatform"))
-	list, err := model.AnimatedSeriesDao.FindAll(platform)
+	arr, err := model.AnimatedSeriesDao.FindAll(platform)
 	if err != nil {
 		slog.Error("GetAllAnimatedSeries", "err", err)
 		return c.Status(http.StatusInternalServerError).JSON(v1.ErrorResponse(err))
 	}
+	var list []*v1.AnimatedSeries
+	copier.Copy(&list, arr)
 	return c.JSON(v1.SuccessResponseT(list, len(list)))
 }
 
