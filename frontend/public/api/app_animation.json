@@ -225,7 +225,7 @@
       {
         "label": "播放",
         "type": "tpl",
-        "tpl": "<a href='${Link}' target='_blank'>第 ${Episode} 集</a>"
+        "tpl": "<a href='${Link}' target='_blank'>${Episode}</a>"
       },
       {
         "label": "更新时间",
@@ -274,6 +274,12 @@
                     "name": "ID",
                     "label": "ID",
                     "disabled": true
+                  },
+                  {
+                    "type": "input-text",
+                    "name": "BadgeLevel",
+                    "label": "BadgeLevel",
+                    "visible": false
                   },
                   {
                     "type": "input-text",
