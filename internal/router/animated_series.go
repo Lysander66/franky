@@ -3,6 +3,7 @@ package router
 import (
 	"log/slog"
 	"net/http"
+	"strconv"
 	"strings"
 
 	v1 "github.com/Lysander66/franky/api/v1"
@@ -11,15 +12,38 @@ import (
 	"github.com/jinzhu/copier"
 )
 
+func intSliceContains(slice []int64, target int64) bool {
+	for _, v := range slice {
+		if v == target {
+			return true
+		}
+	}
+	return false
+}
+
 func GetAllAnimatedSeries(c fiber.Ctx) error {
 	platform := strings.TrimSpace(c.Query("PlaybackPlatform"))
+	Weekday, _ := strconv.ParseInt(c.Query("Weekday"), 10, 0)
 	arr, err := model.AnimatedSeriesDao.FindAll(platform)
 	if err != nil {
 		slog.Error("GetAllAnimatedSeries", "err", err)
 		return c.Status(http.StatusInternalServerError).JSON(v1.ErrorResponse(err))
 	}
 	var list []*v1.AnimatedSeries
-	copier.Copy(&list, arr)
+	if Weekday > 0 {
+		if Weekday == 7 {
+			Weekday = 0 //TODO
+		}
+		for _, v := range arr {
+			if intSliceContains(v.WeeklyUpdateTime, Weekday) {
+				item := &v1.AnimatedSeries{}
+				copier.Copy(item, v)
+				list = append(list, item)
+			}
+		}
+	} else {
+		copier.Copy(&list, arr)
+	}
 	return c.JSON(v1.SuccessResponseT(list, len(list)))
 }
 
