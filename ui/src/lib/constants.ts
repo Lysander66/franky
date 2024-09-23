@@ -16,11 +16,11 @@ export const PlaybackPlatforms: Option<string>[] = [
 ]
 
 export const Weekdays: ReadonlyArray<Option<number>> = [
-	{ value: 1, label: 'Monday' },
-	{ value: 2, label: 'Tuesday' },
-	{ value: 3, label: 'Wednesday' },
-	{ value: 4, label: 'Thursday' },
-	{ value: 5, label: 'Friday' },
-	{ value: 6, label: 'Saturday' },
-	{ value: 0, label: 'Sunday' }
+	{ value: 1, label: '周一' },
+	{ value: 2, label: '周二' },
+	{ value: 3, label: '周三' },
+	{ value: 4, label: '周四' },
+	{ value: 5, label: '周五' },
+	{ value: 6, label: '周六' },
+	{ value: 0, label: '周日' }
 ]

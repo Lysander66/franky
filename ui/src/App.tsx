@@ -2,13 +2,14 @@ import { Action, ErrorComponent, IResourceItem, Refine } from '@refinedev/core'
 import { RefineKbar, RefineKbarProvider } from '@refinedev/kbar'
 import routerBindings, { DocumentTitleHandler, NavigateToResource, UnsavedChangesNotifier } from '@refinedev/react-router-v6'
 import dataProvider from '@refinedev/simple-rest'
-import { BarChart, Calendar, CirclePlay, Code, Download, Play } from 'lucide-react'
+import { BarChart, Calendar, CirclePlay, Code, Download, Play, TvMinimalPlay } from 'lucide-react'
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom'
 
 import './App.css'
 import { Layout, MenuItemProps } from './components/layout'
 import { EventCalendar } from './pages/Calendar'
 import { VideoPlayer } from './pages/VideoPlayer'
+import { AnimationCreate, AnimationEdit, AnimationList } from './pages/animation'
 
 const customTitleHandler = ({
 	resource,
@@ -55,6 +56,11 @@ function App() {
 			path: '/analytics'
 		},
 		{
+			icon: TvMinimalPlay,
+			label: '动画',
+			path: '/animation'
+		},
+		{
 			icon: CirclePlay,
 			label: '播放器',
 			path: '/player'
@@ -65,12 +71,18 @@ function App() {
 		<BrowserRouter>
 			<RefineKbarProvider>
 				<Refine
-					dataProvider={dataProvider('https://api.fake-rest.refine.dev')}
+					dataProvider={dataProvider('http://localhost:3000/api/v1')}
 					routerProvider={routerBindings}
 					resources={[
 						{
 							name: 'calendar',
 							list: '/calendar'
+						},
+						{
+							name: 'animation',
+							list: '/animation',
+							create: '/animation/create',
+							edit: '/animation/edit/:id'
 						}
 					]}
 					options={{
@@ -91,6 +103,12 @@ function App() {
 							<Route index element={<NavigateToResource resource="calendar" />} />
 							<Route path="/calendar">
 								<Route index element={<EventCalendar />} />
+							</Route>
+
+							<Route path="/animation">
+								<Route index element={<AnimationList />} />
+								<Route path="create" element={<AnimationCreate />} />
+								<Route path="edit/:id" element={<AnimationEdit />} />
 							</Route>
 
 							<Route path="*" element={<ErrorComponent />} />

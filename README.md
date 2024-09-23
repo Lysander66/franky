@@ -23,7 +23,7 @@ npm create refine-app@latest
 
 ```sh
 pnpm dlx shadcn@latest init
-pnpm dlx shadcn@latest add button popover
+pnpm dlx shadcn@latest add button calendar card checkbox input label popover select table textarea tooltip
 ```
 
 Theming
