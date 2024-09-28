@@ -7,14 +7,15 @@ import React, { useState } from 'react'
 interface LySelectProps {
 	label?: string
 	id: string
-	placeholder: string
+	placeholder?: string
+	defaultValue?: string
 	options: { value: string; label: string }[]
 	onValueChange: (value: string) => void
 	onClear: () => void
 }
 
-export const LySelect: React.FC<LySelectProps> = ({ label, id, placeholder, options, onValueChange, onClear }) => {
-	const [value, setValue] = useState<string>('')
+export const LySelect: React.FC<LySelectProps> = ({ label, id, placeholder, defaultValue, options, onValueChange, onClear }) => {
+	const [value, setValue] = useState<string>(defaultValue || '')
 
 	const handleValueChange = (newValue: string) => {
 		setValue(newValue)

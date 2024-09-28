@@ -39,7 +39,7 @@ export const AnimationEdit = () => {
 			setValue('Name', formData.Name)
 			setValue('Link', formData.Link)
 			setValue('Episode', formData.Episode)
-			setValue('Production', formData.Production)
+			setValue('Studio', formData.Studio)
 			setValue('PlaybackPlatform', formData.PlaybackPlatform)
 			setValue('Novel', formData.Novel)
 			setValue('EventId', formData.EventId)
@@ -94,18 +94,18 @@ export const AnimationEdit = () => {
 					<form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 md:grid-cols-2 gap-6">
 						<div className="space-y-2">
 							<Label htmlFor="ID">ID</Label>
-							<Input id="ID" {...register('ID')} readOnly />
+							<Input {...register('ID')} readOnly id="ID" />
 						</div>
 
 						<div className="space-y-2">
 							<Label htmlFor="Name">动画</Label>
-							<Input id="Name" {...register('Name', { required: '请输入名称' })} />
+							<Input {...register('Name', { required: '请输入名称' })} id="Name" />
 							{errors.Name && <span className="text-red-500 text-sm">{errors.Name.message as string}</span>}
 						</div>
 
 						<div className="space-y-2">
 							<Label htmlFor="Novel">小说</Label>
-							<Input id="Novel" {...register('Novel')} />
+							<Input {...register('Novel')} id="Novel" />
 						</div>
 
 						<div className="space-y-2">
@@ -168,20 +168,20 @@ export const AnimationEdit = () => {
 						</div>
 
 						<div className="space-y-2">
-							<Label htmlFor="Production">制作</Label>
-							<Input id="Production" {...register('Production')} />
+							<Label htmlFor="Studio">制作</Label>
+							<Input {...register('Studio')} id="Studio" />
 						</div>
 
 						<div className="space-y-2">
 							<Label htmlFor="Rating">评分</Label>
 							<Input
-								id="Rating"
-								type="number"
 								{...register('Rating', {
 									min: 0,
 									max: 10,
 									valueAsNumber: true
 								})}
+								id="Rating"
+								type="number"
 								min="0"
 								max="10"
 								step="0.1"
@@ -190,18 +190,18 @@ export const AnimationEdit = () => {
 
 						<div className="space-y-2">
 							<Label htmlFor="EventId">EventId</Label>
-							<Input id="EventId" {...register('EventId')} />
+							<Input {...register('EventId')} id="EventId" />
 						</div>
 
 						<div className="space-y-2">
 							<Label htmlFor="Episode">Episode</Label>
 							<Input
-								id="Episode"
-								type="number"
 								{...register('Episode', {
 									min: 1,
 									valueAsNumber: true
 								})}
+								id="Episode"
+								type="number"
 								min="1"
 								step="1"
 							/>
@@ -209,17 +209,17 @@ export const AnimationEdit = () => {
 
 						<div className="space-y-2 md:col-span-2">
 							<Label htmlFor="Link">播放链接</Label>
-							<Input id="Link" {...register('Link')} />
+							<Input {...register('Link')} id="Link" />
 						</div>
 
 						<div className="space-y-2 md:col-span-2">
 							<Label htmlFor="Description">说明</Label>
-							<Textarea id="Description" {...register('Description')} className="h-40 transition-all duration-200 ease-in-out" />
+							<Textarea {...register('Description')} id="Description" className="h-40 transition-all duration-200 ease-in-out" />
 						</div>
 					</form>
 				</CardContent>
 				<CardFooter className="flex justify-end space-x-4">
-					<Button type="submit">Save</Button>
+					<Button onClick={handleSubmit(onSubmit)}> Save </Button>
 				</CardFooter>
 			</Card>
 		</div>

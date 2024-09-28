@@ -5,6 +5,8 @@ go 1.23.0
 require (
 	github.com/Lysander66/zephyr v0.6.2
 	github.com/gofiber/fiber/v3 v3.0.0-beta.3
+	github.com/joho/godotenv v1.5.1
+	github.com/lib/pq v1.10.9
 	gorm.io/driver/postgres v1.5.9
 	gorm.io/gorm v1.25.12
 )

@@ -17,7 +17,7 @@ export const AnimationList = () => {
 		() => [
 			{ id: 'id', accessorKey: 'ID', header: 'ID' },
 			{ id: 'name', accessorKey: 'Name', header: '动画' },
-			{ id: 'production', accessorKey: 'Production', header: '制作' },
+			{ id: 'studio', accessorKey: 'Studio', header: '制作' },
 			{
 				id: 'episode',
 				accessorKey: 'Episode',

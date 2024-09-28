@@ -2,15 +2,20 @@ import { Action, ErrorComponent, IResourceItem, Refine } from '@refinedev/core'
 import { RefineKbar, RefineKbarProvider } from '@refinedev/kbar'
 import routerBindings, { DocumentTitleHandler, NavigateToResource, UnsavedChangesNotifier } from '@refinedev/react-router-v6'
 import dataProvider from '@refinedev/simple-rest'
-import { BarChart, Calendar, CirclePlay, Code, Download, Play, TvMinimalPlay } from 'lucide-react'
+import { BarChart, Calendar, CirclePlay, Code, Download, Play, TvMinimalPlay, Zap } from 'lucide-react'
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom'
+import restProvider from './lib/RestProvider'
 
 import './App.css'
 import { Layout, MenuItemProps } from './components/layout'
 import { AnimationCreate, AnimationEdit, AnimationList } from './pages/animation'
 import { EventCalendar } from './pages/calendar'
 import { HLSDownloader } from './pages/hls-downloader'
+import { StreamList } from './pages/stream/list'
 import { VideoPlayer } from './pages/video-player'
+
+const API_URL = 'http://localhost:3000/api/v1'
+const STREAM_API_URL = 'http://localhost:3000/api/v8'
 
 const customTitleHandler = ({
 	resource,
@@ -62,6 +67,11 @@ function App() {
 			path: '/animation'
 		},
 		{
+			icon: Zap,
+			label: '直播流',
+			path: '/stream'
+		},
+		{
 			icon: Download,
 			label: '下载器',
 			path: '/downloader'
@@ -77,7 +87,10 @@ function App() {
 		<BrowserRouter>
 			<RefineKbarProvider>
 				<Refine
-					dataProvider={dataProvider('http://localhost:3000/api/v1')}
+					dataProvider={{
+						default: dataProvider(API_URL),
+						streams: restProvider(STREAM_API_URL)
+					}}
 					routerProvider={routerBindings}
 					resources={[
 						{
@@ -89,6 +102,10 @@ function App() {
 							list: '/animation',
 							create: '/animation/create',
 							edit: '/animation/edit/:id'
+						},
+						{
+							name: 'stream',
+							list: '/stream'
 						}
 					]}
 					options={{
@@ -115,6 +132,10 @@ function App() {
 								<Route index element={<AnimationList />} />
 								<Route path="create" element={<AnimationCreate />} />
 								<Route path="edit/:id" element={<AnimationEdit />} />
+							</Route>
+
+							<Route path="/stream">
+								<Route index element={<StreamList />} />
 							</Route>
 
 							<Route path="*" element={<ErrorComponent />} />
