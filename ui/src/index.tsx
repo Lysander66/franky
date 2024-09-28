@@ -1,3 +1,4 @@
+import { Toaster } from '@/components/ui/toaster'
 import { ThemeProvider } from 'next-themes'
 import React from 'react'
 import { createRoot } from 'react-dom/client'
@@ -11,6 +12,7 @@ root.render(
 	<React.StrictMode>
 		<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
 			<App />
+			<Toaster />
 		</ThemeProvider>
 	</React.StrictMode>
 )

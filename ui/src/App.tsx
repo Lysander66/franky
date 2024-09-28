@@ -7,9 +7,10 @@ import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom'
 
 import './App.css'
 import { Layout, MenuItemProps } from './components/layout'
-import { EventCalendar } from './pages/Calendar'
-import { VideoPlayer } from './pages/VideoPlayer'
 import { AnimationCreate, AnimationEdit, AnimationList } from './pages/animation'
+import { EventCalendar } from './pages/calendar'
+import { HLSDownloader } from './pages/hls-downloader'
+import { VideoPlayer } from './pages/video-player'
 
 const customTitleHandler = ({
 	resource,
@@ -59,6 +60,11 @@ function App() {
 			icon: TvMinimalPlay,
 			label: '动画',
 			path: '/animation'
+		},
+		{
+			icon: Download,
+			label: '下载器',
+			path: '/downloader'
 		},
 		{
 			icon: CirclePlay,
@@ -112,6 +118,10 @@ function App() {
 							</Route>
 
 							<Route path="*" element={<ErrorComponent />} />
+						</Route>
+
+						<Route path="/downloader">
+							<Route index element={<HLSDownloader />} />
 						</Route>
 
 						<Route path="/player">

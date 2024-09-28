@@ -219,7 +219,7 @@ export const AnimationEdit = () => {
 					</form>
 				</CardContent>
 				<CardFooter className="flex justify-end space-x-4">
-					<Button onClick={handleSubmit(onSubmit)}> Save </Button>
+					<Button type="submit">Save</Button>
 				</CardFooter>
 			</Card>
 		</div>

@@ -187,9 +187,7 @@ export const AnimationCreate = () => {
 					</form>
 				</CardContent>
 				<CardFooter className="flex justify-end">
-					<Button type="submit" onClick={handleSubmit(onSubmit)}>
-						Create
-					</Button>
+					<Button type="submit">Create</Button>
 				</CardFooter>
 			</Card>
 		</div>
