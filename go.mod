@@ -3,7 +3,7 @@ module github.com/Lysander66/franky
 go 1.23.0
 
 require (
-	github.com/Lysander66/zephyr v0.6.2
+	github.com/Lysander66/zephyr v0.6.3
 	github.com/gofiber/fiber/v3 v3.0.0-beta.3
 	github.com/joho/godotenv v1.5.1
 	github.com/lib/pq v1.10.9
@@ -22,11 +22,11 @@ require (
 	github.com/jackc/puddle/v2 v2.2.2 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
-	github.com/klauspost/compress v1.17.9 // indirect
+	github.com/klauspost/compress v1.17.10 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
-	github.com/valyala/fasthttp v1.55.0 // indirect
+	github.com/valyala/fasthttp v1.56.0 // indirect
 	github.com/valyala/tcplisten v1.0.0 // indirect
 	github.com/yapingcat/gomedia v0.0.0-20240906162731-17feea57090c // indirect
 	golang.org/x/crypto v0.27.0 // indirect

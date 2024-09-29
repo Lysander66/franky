@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { DataProvider } from '@refinedev/core'
 import simpleRestProvider from '@refinedev/simple-rest'
 

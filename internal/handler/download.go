@@ -48,7 +48,6 @@ func Download(c fiber.Ctx) error {
 	}
 
 	dl := stream.NewHLSDownloader(req.URL, req.Filename, req.Directory, req.Threads)
-	dl.AutoCleanup = false
 
 	go func() {
 		err = dl.Download()
