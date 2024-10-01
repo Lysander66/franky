@@ -23,7 +23,7 @@ npm create refine-app@latest
 
 ```sh
 pnpm dlx shadcn@latest init
-pnpm dlx shadcn@latest add button calendar card checkbox input label popover select slider table textarea toast tooltip
+pnpm dlx shadcn@latest add button calendar card checkbox input label popover scroll-area select separator slider table textarea toast tooltip
 ```
 
 Theming

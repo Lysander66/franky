@@ -2,17 +2,19 @@ import { Action, ErrorComponent, IResourceItem, Refine } from '@refinedev/core'
 import { RefineKbar, RefineKbarProvider } from '@refinedev/kbar'
 import routerBindings, { DocumentTitleHandler, NavigateToResource, UnsavedChangesNotifier } from '@refinedev/react-router-v6'
 import dataProvider from '@refinedev/simple-rest'
-import { BarChart, Calendar, CirclePlay, Code, Download, Play, TvMinimalPlay, Zap } from 'lucide-react'
+import { BarChart, Calendar, CirclePlay, CloudLightning, Code, Download, Play, TvMinimalPlay, Zap } from 'lucide-react'
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom'
 import restProvider from './lib/RestProvider'
 
 import './App.css'
 import { Layout, MenuItemProps } from './components/layout'
+import { Analytics } from './pages/analytics'
 import { AnimationCreate, AnimationEdit, AnimationList } from './pages/animation'
-import { EventCalendar } from './pages/calendar'
+import { EventCalendar } from './pages/event-calendar'
 import { HLSDownloader } from './pages/hls-downloader'
 import { StreamList } from './pages/stream/list'
 import { VideoPlayer } from './pages/video-player'
+import WeatherForecast from './pages/weather-forecast'
 
 const API_URL = 'http://localhost:3000/api/v1'
 const STREAM_API_URL = 'http://localhost:3000/api/v8'
@@ -60,6 +62,11 @@ function App() {
 			icon: BarChart,
 			label: '数据分析',
 			path: '/analytics'
+		},
+		{
+			icon: CloudLightning,
+			label: '天气预报',
+			path: '/weather'
 		},
 		{
 			icon: TvMinimalPlay,
@@ -126,6 +133,14 @@ function App() {
 							<Route index element={<NavigateToResource resource="calendar" />} />
 							<Route path="/calendar">
 								<Route index element={<EventCalendar />} />
+							</Route>
+
+							<Route path="/analytics">
+								<Route index element={<Analytics />} />
+							</Route>
+
+							<Route path="/weather">
+								<Route index element={<WeatherForecast />} />
 							</Route>
 
 							<Route path="/animation">

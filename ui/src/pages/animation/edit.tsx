@@ -110,7 +110,7 @@ export const AnimationEdit = () => {
 
 						<div className="space-y-2">
 							<Label htmlFor="PlaybackPlatform">平台</Label>
-							<Select onValueChange={(value) => setValue('PlaybackPlatform', value)} defaultValue={watch('PlaybackPlatform')}>
+							<Select value={watch('PlaybackPlatform')} onValueChange={(value) => setValue('PlaybackPlatform', value)}>
 								<SelectTrigger id="PlaybackPlatform">
 									<SelectValue />
 								</SelectTrigger>
