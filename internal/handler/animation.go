@@ -32,7 +32,7 @@ func (h *AnimationHandler) GetAll(c fiber.Ctx) error {
 		query = query.Where("weekly_update_time @> ?", pq.Array([]int{weekday}))
 	}
 
-	result := query.Find(&entities)
+	result := query.Order("id ASC").Find(&entities)
 	if result.Error != nil {
 		return c.Status(500).JSON(fiber.Map{"error": "Failed to fetch animations"})
 	}
