@@ -1,7 +1,7 @@
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Separator } from '@/components/ui/separator'
 
-export const Analytics = () => {
+const Analytics = () => {
 	return (
 		<div className="container mx-auto p-4 max-w-3xl">
 			<ScrollArea className="h-[calc(100vh-2rem)] pr-4">
@@ -63,3 +63,5 @@ export const Analytics = () => {
 		</div>
 	)
 }
+
+export default Analytics

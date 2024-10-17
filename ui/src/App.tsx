@@ -8,10 +8,11 @@ import restProvider from './lib/RestProvider'
 
 import './App.css'
 import { Layout, MenuItemProps } from './components/layout'
-import { Analytics } from './pages/analytics'
+import Analytics from './pages/analytics'
 import { AnimationCreate, AnimationEdit, AnimationList } from './pages/animation'
 import { EventCalendar } from './pages/event-calendar'
 import { HLSDownloader } from './pages/hls-downloader'
+import Demo from './pages/run-code'
 import { StreamList } from './pages/stream/list'
 import { VideoPlayer } from './pages/video-player'
 import WeatherForecast from './pages/weather-forecast'
@@ -133,6 +134,10 @@ function App() {
 							<Route index element={<NavigateToResource resource="calendar" />} />
 							<Route path="/calendar">
 								<Route index element={<EventCalendar />} />
+							</Route>
+
+							<Route path="/run-code">
+								<Route index element={<Demo />} />
 							</Route>
 
 							<Route path="/analytics">
